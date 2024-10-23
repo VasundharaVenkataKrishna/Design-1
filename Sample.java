@@ -1,3 +1,4 @@
+// HASHSET
 // Time Complexity : O(1)
 // Space Complexity : O(n)
 // Did this code successfully run on Leetcode : yes
@@ -55,3 +56,60 @@ class MyHashSet {
         return storage[primaryIndex][secondaryIndex];
     }
 }
+
+
+
+//MIN STACK
+
+// Time Complexity : O(1)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+
+class MinStack {
+    Stack<Integer> stack;    // Regular stack to store all values
+    Stack<Integer> minStack; // Stack to keep track of minimum values
+    int min;                 // Current minimum value
+
+    // Constructor initializes stacks and pushes a dummy value to avoid empty stack issues
+    public MinStack() {
+        this.stack = new Stack<>();
+        this.minStack = new Stack<>();
+        this.min = Integer.MAX_VALUE;
+        minStack.push(min);  // Avoid empty stack issues during pop and peek
+    }
+
+    // Push a new value onto the stack. Update the minimum value
+    // and push it onto the minStack for tracking
+    public void push(int val) {
+        min = Math.min(val, min);
+        stack.push(val);
+        minStack.push(min);
+    }
+
+    // Remove the top element from both the stack and minStack.
+    // Update the min to the new top of minStack after the pop
+    public void pop() {
+        stack.pop();
+        minStack.pop();
+        min = minStack.peek();
+    }
+
+    // Return the top element of the stack without removing it
+    public int top() {
+        return stack.peek();
+    }
+    // Return the current minimum value
+    public int getMin() {
+        return min;
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(val);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
